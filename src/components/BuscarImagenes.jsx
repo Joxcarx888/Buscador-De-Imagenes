@@ -1,19 +1,24 @@
-import { useState } from "react"
+import React, { useState } from 'react';
 
-export const BuscarImagenes = ({handleGetImagen}) => {
+export const BuscarImagenes = ({ handleSearch }) => {
+  const [query, setQuery] = useState('');
 
-    const[busqueda, setBusqueda]=useState('')
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleSearch(query);
+  };
+
   return (
-    <>  
-        
-        <div className="d-flex flex-row justify-content-center alig-items-center mt-3">
-            <form className="d-flex" onSubmit={ (e) => { handleGetImagen(e,busqueda)}}>
-                
-                <input className="me-2 form-control" type="text" onChange={ (e) =>{ setBusqueda(e.target.value)}}/>
-                <input className="btn btn-primary" type="submit" value='buscar'/>
-            </form>
-        </div>
-        
-    </>
-  )
-}
+    <form onSubmit={onSubmit} className="d-flex justify-content-center mb-4 mt-4">
+      <input 
+        type="text" 
+        value={query} 
+        onChange={(e) => setQuery(e.target.value)} 
+        className="form-control w-50" 
+        placeholder="Buscar" 
+      />
+      <button type="submit" className="btn btn-primary ms-2">Search</button>
+    </form>
+  );
+};
+

@@ -1,24 +1,17 @@
-import { useEffect, useState } from "react";
-import { reqImagenes} from "./services/imagenes";
+import { useEffect, useState } from 'react';
+import { reqImagenes } from '../services/imagenes';
 
-export const useImagenes = (busqueda, offset = 0) => {
-    const [imagenes, setImagenes] = useState([])
-    const [busqueda,setBusqueda] = useState([])
- 
-    const handleGetImagen = (e, busqueda) =>{
-        e.preventDefault()
+export const useImagenes = (query = '', page = 1) => {
+  const [images, setImages] = useState([]);
 
-        reqImagenes(busqueda).then((imagenes) => {
-            setImagenes(imagenes)            
-        })
+  useEffect(() => {
+    reqImagenes(query, page).then((data) => {
+      setImages(data);
+    });
+  }, [query, page]);
 
-        setNombreCategoria(busqueda)
-    }
-
-    return{
-        handleGetImagen,
-        imagenes,
-        busqueda
-    }
+  return {
+    images,
+  };
 };
- 
+
