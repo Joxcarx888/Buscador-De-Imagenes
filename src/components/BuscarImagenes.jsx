@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
 
-export const BuscarImagenes = ({ handleSearch }) => {
+export const BuscarImagenes = ({ buscarImagen }) => {
   const [query, setQuery] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
-    handleSearch(query);
+    buscarImagen(query);
   };
 
   return (
-    <form onSubmit={onSubmit} className="d-flex justify-content-center mb-4 mt-4">
-      <input 
-        type="text" 
-        value={query} 
-        onChange={(e) => setQuery(e.target.value)} 
-        className="form-control w-50" 
-        placeholder="Buscar" 
+    <div className='d-flex justify-content-center align-items-center mt-3'>
+      <img src="/src/styles/assets/Diseño_sin_título-removebg-preview.png" alt="Lupa" className="img-fluid" 
+        style={{ maxWidth: '48px', maxHeight: '48px', marginRight: '8px' }} 
       />
-      <button type="submit" className="btn btn-primary ms-2">Search</button>
-    </form>
+      <form onSubmit={onSubmit} className="d-flex align-items-center">
+        <input 
+          type="text" 
+          value={query} 
+          onChange={(e) => setQuery(e.target.value)} 
+          className="form-control w-75" 
+          placeholder="Buscar" 
+        />
+        <button type="submit" className="btn btn-primary ms-2">Buscar</button>
+      </form>
+    </div>
   );
 };
 

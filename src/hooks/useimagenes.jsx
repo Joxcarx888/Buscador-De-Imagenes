@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react';
 import { reqImagenes } from '../services/imagenes';
 
 export const useImagenes = (query = '', page = 1) => {
-  const [images, setImages] = useState([]);
+  const [imagenes, setImagenes] = useState([]);
 
   useEffect(() => {
     reqImagenes(query, page).then((data) => {
-      setImages(data);
+      setImagenes(data);
     });
   }, [query, page]);
 
   return {
-    images,
+    imagenes,
   };
 };
-
